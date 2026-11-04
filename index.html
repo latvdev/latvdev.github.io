@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="lo">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>ເຂົ້າສູ່ລະບົບ - IT Software Portal</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Lao:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Noto Sans Lao', sans-serif;
+    }
+
+    .login-card {
+      animation: fadeIn .5s ease;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    button:disabled {
+      opacity: .65;
+      cursor: not-allowed;
+    }
+
+    .spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(255,255,255,.4);
+      border-top-color: white;
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+
+    @keyframes spin {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+  </style>
+</head>
+
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-4">
+
+  <div class="login-card bg-white shadow-xl rounded-2xl w-full max-w-md p-8 border border-slate-200">
+
+    <!-- Header -->
+    <div class="text-center mb-8">
+
+      <div class="inline-flex items-center justify-center w-16 h-16 bg-indigo-50 text-indigo-600 rounded-full mb-4">
+
+        <svg xmlns="http://www.w3.org/2000/svg"
+          class="w-8 h-8"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke="currentColor">
+
+          <path stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+
+        </svg>
+
+      </div>
+
+      <h2 class="text-2xl font-bold text-slate-800">
+        ເຂົ້າສູ່ລະບົບ IT Portal
+      </h2>
+
+      <p class="text-sm text-slate-500 mt-2">
+        ກະລຸນາປ້ອນຂໍ້ມູນເພື່ອເຂົ້າໃຊ້ງານ
+      </p>
+
+    </div>
+
+    <!-- Login Form -->
+    <form id="loginForm" class="space-y-5">
+
+      <!-- Username -->
+      <div>
+
+        <label for="username"
+          class="block text-sm font-medium text-slate-700 mb-1">
+
+          ຊື່ຜູ້ໃຊ້ (Username)
+
+        </label>
+
+        <input
+          type="text"
+          id="username"
+          name="username"
+          required
+          autocomplete="username"
+          maxlength="50"
+          class="w-full px-4 py-3 border border-slate-300 rounded-xl
+          focus:outline-none focus:ring-2 focus:ring-indigo-500
+          focus:border-transparent transition"
+          placeholder="ໃສ່ຊື່ຜູ້ໃຊ້">
+
+      </div>
+
+      <!-- Password -->
+      <div>
+
+        <label for="password"
+          class="block text-sm font-medium text-slate-700 mb-1">
+
+          ລະຫັດຜ່ານ (Password)
+
+        </label>
+
+        <div class="relative">
+
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            autocomplete="current-password"
+            class="w-full px-4 py-3 pr-16 border border-slate-300 rounded-xl
+            focus:outline-none focus:ring-2 focus:ring-indigo-500
+            focus:border-transparent transition"
+            placeholder="ໃສ່ລະຫັດຜ່ານ">
+
+          <button
+            type="button"
+            id="togglePassword"
+            class="absolute right-3 top-1/2 -translate-y-1/2
+            text-sm text-indigo-600 hover:text-indigo-800">
+
+            ສະແດງ
+
+          </button>
+
+        </div>
+
+      </div>
+
+      <!-- Remember / Info -->
+      <div class="flex items-center justify-between text-sm">
+
+        <span class="text-slate-500">
+          IT Software Portal
+        </span>
+
+        <span class="text-indigo-600 font-medium">
+          Secure Login
+        </span>
+
+      </div>
+
+      <!-- Submit -->
+      <button
+        type="submit"
+        id="loginButton"
+        class="w-full bg-indigo-600 hover:bg-indigo-700
+        active:bg-indigo-800 text-white font-semibold
+        py-3 px-4 rounded-xl shadow-md hover:shadow-lg
+        transition duration-200 flex items-center justify-center gap-2">
+
+        <span id="buttonText">
+          ເຂົ້າສູ່ລະບົບ
+        </span>
+
+        <span id="spinner" class="spinner hidden"></span>
+
+      </button>
+
+    </form>
+
+    <!-- Error -->
+    <div
+      id="error"
+      role="alert"
+      aria-live="polite"
+      class="text-red-600 text-sm font-medium text-center mt-5 hidden">
+
+      ⚠️ ຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ
+
+    </div>
+
+    <!-- Success -->
+    <div
+      id="success"
+      role="status"
+      class="text-green-600 text-sm font-medium text-center mt-5 hidden">
+
+      ✓ ເຂົ້າລະບົບສຳເລັດ
+
+    </div>
+
+    <!-- Footer -->
+    <div class="text-center mt-8 pt-5 border-t border-slate-100">
+
+      <p class="text-xs text-slate-400">
+        © 2026 IT Software Portal
+      </p>
+
+      <p class="text-xs text-slate-400 mt-1">
+        All Rights Reserved.
+      </p>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    // ====================================
+    // CONFIGURATION
+    // ====================================
+
+    const CONFIG = {
+      username: 'root',
+      password: 'it303',
+      redirect: 'main.html'
+    };
+
+
+    // ====================================
+    // ELEMENTS
+    // ====================================
+
+    const loginForm = document.getElementById('loginForm');
+
+    const usernameInput = document.getElementById('username');
+
+    const passwordInput = document.getElementById('password');
+
+    const loginButton = document.getElementById('loginButton');
+
+    const buttonText = document.getElementById('buttonText');
+
+    const spinner = document.getElementById('spinner');
+
+    const errorMessage = document.getElementById('error');
+
+    const successMessage = document.getElementById('success');
+
+    const togglePassword = document.getElementById('togglePassword');
+
+
+    // ====================================
+    // PASSWORD VISIBILITY
+    // ====================================
+
+    togglePassword.addEventListener('click', () => {
+
+      const isPassword = passwordInput.type === 'password';
+
+      passwordInput.type = isPassword ? 'text' : 'password';
+
+      togglePassword.textContent = isPassword ? 'ຊ່ອນ' : 'ສະແດງ';
+
+    });
+
+
+    // ====================================
+    // SHA-256
+    // ====================================
+
+    async function hashPassword(password) {
+
+      const buffer = await crypto.subtle.digest(
+        'SHA-256',
+        new TextEncoder().encode(password)
+      );
+
+      return Array.from(new Uint8Array(buffer))
+        .map(byte => byte.toString(16).padStart(2, '0'))
+        .join('');
+
+    }
+
+
+    // ====================================
+    // UI FUNCTIONS
+    // ====================================
+
+    function setLoading(loading) {
+
+      loginButton.disabled = loading;
+
+      spinner.classList.toggle('hidden', !loading);
+
+      buttonText.textContent = loading
+        ? 'ກຳລັງກວດສອບ...'
+        : 'ເຂົ້າສູ່ລະບົບ';
+
+    }
+
+
+    function showError(message) {
+
+      errorMessage.textContent = message;
+
+      errorMessage.classList.remove('hidden');
+
+      successMessage.classList.add('hidden');
+
+    }
+
+
+    // ====================================
+    // LOGIN SYSTEM
+    // ====================================
+
+    loginForm.addEventListener('submit', async (event) => {
+
+      event.preventDefault();
+
+      errorMessage.classList.add('hidden');
+
+      successMessage.classList.add('hidden');
+
+      const username = usernameInput.value.trim();
+
+      const password = passwordInput.value;
+
+      if (!username || !password) {
+
+        showError('⚠️ ກະລຸນາປ້ອນ Username ແລະ Password');
+
+        return;
+
+      }
+
+      setLoading(true);
+
+      try {
+
+        const inputHash = await hashPassword(password);
+
+        const targetHash = await hashPassword(CONFIG.password);
+
+        const validUser = username === CONFIG.username;
+
+        const validPassword = inputHash === targetHash;
+
+        if (validUser && validPassword) {
+
+          sessionStorage.setItem('isLoggedIn', 'true');
+
+          sessionStorage.setItem('authUser', username);
+
+          successMessage.classList.remove('hidden');
+
+          buttonText.textContent = 'ສຳເລັດ!';
+
+          setTimeout(() => {
+
+            window.location.href = CONFIG.redirect;
+
+          }, 500);
+
+        } else {
+
+          showError('⚠️ ຊື່ຜູ້ໃຊ້ ຫຼື ລະຫັດຜ່ານບໍ່ຖືກຕ້ອງ');
+
+          setLoading(false);
+
+        }
+
+      } catch (error) {
+
+        console.error('Login Error:', error);
+
+        showError('⚠️ ລະບົບມີບັນຫາ ກະລຸນາໃຊ້ HTTPS ຫຼື localhost');
+
+        setLoading(false);
+
+      }
+
+    });
+
+
+    // ====================================
+    // CLEAR ERROR ON INPUT
+    // ====================================
+
+    usernameInput.addEventListener('input', () => {
+
+      errorMessage.classList.add('hidden');
+
+    });
+
+    passwordInput.addEventListener('input', () => {
+
+      errorMessage.classList.add('hidden');
+
+    });
+
+  </script>
+
+</body>
+</html>
