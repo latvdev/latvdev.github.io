@@ -37,7 +37,7 @@
     <!-- Header & Search -->
     <div class="mb-8 text-center max-w-2xl mx-auto">
       <h2 class="text-2xl font-bold text-slate-800 mb-2">ລາຍຊື່ໂປຼແກຼມທັງໝົດ</h2>
-      <p class="text-slate-600 text-sm mb-6">ເລືອກ ແລະ ດາວໂຫຼດໂປຼແກຼມທີ່ต้องการได้จากรายการด้านล่าง</p>
+      <p class="text-slate-600 text-sm mb-6">ເລືອກ ແລະ ດາວໂຫຼດໂປຼແກຼມ</p>
       
       <!-- Search input -->
       <div class="relative">
@@ -67,12 +67,12 @@
 </script>
   <script>
     if (sessionStorage.getItem('isLoggedIn') !== 'true') {
-    window.location.replace('login.html');
+    window.location.replace('index.html');
   }
 
     function logout() {
   sessionStorage.clear();
-  window.location.replace('login.html');
+  window.location.replace('index.html');
 }
   </script>
   <script src="js.js"></script>

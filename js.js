@@ -73,9 +73,10 @@ const softwareData = [
   },
   {
     category: "System & Utilities",
-    name: "IDM v6.42 Build 35",
-    description: "Internet Download Manager 6.42 Build 35",
-    link: "downloads/Internet_Download_Manager_IDM_v6.42_Build_35.iso"
+    name: "IDM v6.43 Build 16",
+    description: "Internet Download Manager 6.43 Build 16",
+    link: "downloads/Internet_Download_Manager_(IDM)_v6.43_Build_16.7z",
+    update:"04/11/2026"
   },
   {
     category: "Fonts",
@@ -144,9 +145,16 @@ function renderSoftwareList(data) {
     desc.className = "text-xs text-slate-500 mb-4";
     desc.textContent = item.description;
 
+    // Description
+    const upda = document.createElement("p");
+    upda.className = "text-xs text-slate-500 mb-4";
+    upda.textContent = item.update;
+
     contentDiv.appendChild(badge);
     contentDiv.appendChild(title);
     contentDiv.appendChild(desc);
+    contentDiv.appendChild(upda);
+
 
     // Download Button
     const downloadBtn = document.createElement("a");
