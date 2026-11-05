@@ -73,10 +73,10 @@ const softwareData = [
   },
   {
     category: "System & Utilities",
-    name: "IDM v6.43 Build 16",
-    description: "Internet Download Manager 6.43 Build 16",
-    link: "downloads/Internet_Download_Manager_(IDM)_v6.43_Build_16.7z",
-    update:"04/11/2026"
+    name: "IDM v6.43 Build 17",
+    description: "Internet Download Manager 6.43 Build 17",
+    link: "downloads/Internet_Download_Manager_(IDM)_v6.43_Build_17.zip",
+    update:"05/11/2026"
   },
   {
     category: "Fonts",
