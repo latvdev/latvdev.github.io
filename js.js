@@ -105,7 +105,7 @@ const softwareData = [
   {
     category: "System & Utilities",
     name: "Restart Spooler Printer",
-    description: "ไฟล์ Batch สคริปต์ Restart Spooler Printer",
+    description: "Batch Restart Spooler Printer",
     link: "downloads/restart_spooler_printer.bat"
   }
 ];
