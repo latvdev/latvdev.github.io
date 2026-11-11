@@ -1,4 +1,12 @@
 const softwareData = [
+    {
+    category: "Activation Tools",
+    name: "KMSpico 11.22",
+    description: "Activate Windows/Office",
+    link: "downloads/KMSpico_11.2.2_Multilingual.7z",
+    update:"11/11/2026"
+
+  },
   {
     category: "Activation Tools",
     name: "Re-Loader 2.6",
