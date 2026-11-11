@@ -5,7 +5,6 @@ const softwareData = [
     description: "Activate Windows/Office",
     link: "downloads/KMSpico_11.2.2_Multilingual.7z",
     update:"11/11/2026"
-
   },
   {
     category: "Activation Tools",
@@ -115,7 +114,13 @@ const softwareData = [
     name: "Restart Spooler Printer",
     description: "Batch Restart Spooler Printer",
     link: "downloads/restart_spooler_printer.bat"
-  }
+  },
+  {
+    category: "System & Utilities",
+    name: "WinCDEmu",
+    description: "WinCDEmu is an open-source CD/DVD/BD emulator",
+    link: "downloads/WinCDEmu-4.1.exe"
+  },
 ];
 
 const container = document.getElementById("softwareContainer");
